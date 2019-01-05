@@ -54,6 +54,9 @@ public class StudentResource {
 		studentRepository.deleteById(id);
 	}
 
+	/**
+	 * curl -X POST 'localhost:8080/students' -H 'Content-type:application/json' -d '{"name": "qweqweqwe"}'
+	 * */
 	@PostMapping("/students")
 	public ResponseEntity<Object> createStudent(@Valid @RequestBody Student student) {
 		Student savedStudent = studentRepository.save(student);
