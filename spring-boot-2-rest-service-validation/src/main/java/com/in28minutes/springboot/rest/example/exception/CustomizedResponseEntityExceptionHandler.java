@@ -1,9 +1,13 @@
 package com.in28minutes.springboot.rest.example.exception;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.oracle.javafx.jmx.json.JSONWriter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +48,10 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         invalidMessage.put("code", -1);
 
         BindingResult bindingResult = ex.getBindingResult();
+
         ObjectError error0 = bindingResult.getAllErrors().get(0);
+
+        System.out.println(JSON.toJSONString(error0, true));
 
         StringBuilder msgBuilder = new StringBuilder();
         if (error0 instanceof FieldError) {
